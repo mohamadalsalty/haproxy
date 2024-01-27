@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  haproxy:
+    image: haproxy:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - webapp
+
+  webapp:
+    image: httpd:latest
+    expose:
+      - "80"
+
